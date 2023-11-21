@@ -1,0 +1,64 @@
+<h2> Real Time Products </h2>
+
+<div>
+    <form id="form">
+        Title: <input name="title" id="title"> <br>
+        Description: <input name="description" id="description"> <br> 
+        Price: <input name="price" id="price"> <br>
+        Thumbnail: <input name="thumbnail" id="thumbnail"> <br>
+        Code: <input name="code" id="code"> <br> 
+        Stock: <input name="stock" id="stock"> <br>
+        <input type="submit" value="Add product" id="addbtn"> <br> 
+    </form>
+</div>
+
+<div id="productsList">
+
+    {{#each product}}
+        <h4>{{this.title}}</h4>
+        <p>{{this.description}}</p>
+        <p>{{this.price}}</p>
+        <p>{{this.code}}</p>
+        <p>{{this.stock}}</p>
+    {{/each}}
+
+</div>
+
+
+{{!----- SCRIPTS -----}}
+
+<script src="/socket.io/socket.io.js"></script>
+{{! <script src="/src/public/index.js"> </script>}}
+
+<script>
+    const socket = io();
+    
+    const boton = document.querySelector('#addbtn')
+
+    const accion = function () {
+        const value = document.querySelector('#title').value
+        console.log(value)
+        socket.emit('newProd', value)
+    }
+
+    boton.addEventListener("onclick", accion)
+
+    
+
+    /*const prueba = document.querySelector('#title')
+    console.log(prueba);*/
+
+   /* document.querySelector('addbtn').onclick = {
+        const value = document.querySelector('title');
+        console.log(hola);
+    }*/
+</script>
+
+
+
+
+
+
+
+
+
